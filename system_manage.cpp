@@ -187,7 +187,7 @@ RC SM_Manager::Print(const char *relName){
   //  record.GetRid(rid);
   //  attribute_fh.DeleteRec(rid);
     record.GetData(mem);
-    cout<<GenString((char *)(mem+RELNAME_LENGTH),ATTRNAME_LENGTH)<<"("<<*(int*)(mem+RELNAME_LENGTH+ATTRNAME_LENGTH+8)<<")"<<endl;
+    cout<<GenString((char *)(mem+RELNAME_LENGTH),ATTRNAME_LENGTH)<<"("<<*(int*)(mem+RELNAME_LENGTH+ATTRNAME_LENGTH+8)<<")"<<*(int*)(mem+RELNAME_LENGTH+ATTRNAME_LENGTH+4)<<endl;
   }
   return OK;
 }
