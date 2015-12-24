@@ -73,5 +73,7 @@ class SM_Manager {
   RC GetFh(const char *relName,RM_FileHandle& fh);
   RC GetAttrInfo(const char *relName,const char *AttrName,int &offset,int &length,AttrType &attrtype);
   RC Getoffset(const char *relName,int *offset,int *length);
+  void GetsystemHandle(RM_FileHandle *&system_fh1){system_fh1=&system_fh;}
+  void GetattributeHandle(RM_FileHandle *&attribute_fh1){attribute_fh1=&attribute_fh;}
 };
 #endif

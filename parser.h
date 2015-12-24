@@ -2,6 +2,7 @@
 #define PARSER_H
 
 #include "system_manage.h"
+#include "record_manager.h"
 #include <iostream>
 #include <sstream>
 //#include  "main.h"

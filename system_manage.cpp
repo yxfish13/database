@@ -127,6 +127,8 @@ RC SM_Manager::CreateTable(const char *rel_name, int attr_count, AttrInfo *attr_
     PutIntData(nowp, attr_info[i].notNull);
     attribute_fh.InsertRec(pData, rid);
   }
+  attribute_fh.ForcePages();
+  system_fh.ForcePages();
   //-------------------
 
   //for table file
@@ -164,6 +166,10 @@ RC SM_Manager::DropTable(const char *relName){
     attribute_fh.DeleteRec(rid);
   }
   system((string("mv -f ")+db_dir+string(relName)+" "+db_dir+"dust/"+string(relName)).c_str());
+
+  attribute_fh.ForcePages();
+  system_fh.ForcePages();
+  
   //-----------------------
   
   return OK;
@@ -231,6 +237,7 @@ RC SM_Manager::GetAttrInfo(const char *relName,const char *AttrName,int &offset,
       attrtype=(AttrType)*(int*)(mem+RELNAME_LENGTH+ATTRNAME_LENGTH+4);
     }
   }
+  return OK;
 }
 RC SM_Manager::Getoffset(const char *relName,int *offset,int *length){
   RM_FileScan attribute_scanner(attribute_fh, STRING, RELNAME_LENGTH, 0, EQ_OP, 
@@ -250,6 +257,7 @@ RC SM_Manager::Getoffset(const char *relName,int *offset,int *length){
     //  attrtype=*(int*)(mem+RELNAME_LENGTH+ATTRNAME_LENGTH+4);
     //}
   }
+  return OK;
 }
 
 //----------------------------SM_MANAGER----------------------------------
